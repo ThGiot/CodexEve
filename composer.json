@@ -1,0 +1,15 @@
+{
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.29",
+        "twilio/sdk": "^7.11",
+        "setasign/fpdf": "^1.8",
+        "swiftmailer/swiftmailer": "^6.3"
+    },
+
+    "config": {
+        "vendor-dir": "httpd.private/vendor"
+    }
+
+
+    
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tv generator-info-name="Festival EPG Example">
+    <channel id="red_stage">
+        <display-name>Scène RED</display-name>
+        <icon src="https://example.com/icons/red_stage.png" />
+    </channel>
+    <programme channel="red_stage" start="20250313150000 +0000" stop="20250313170000 +0000">
+        <title>Xavier Rudd - Live Concert</title>
+        <desc>Performance live de Xavier Rudd sur la scène RED du festival. Profitez de sa musique folk et de ses vibes positives.</desc>
+        <icon src="https://example.com/images/xavier_rudd_live.jpg" />
+    </programme>
+</tv>

@@ -1,0 +1,48 @@
+<style>
+header h1 {
+    font-size: 2rem;
+}
+
+/* Conteneur principal avec défilement horizontal, sans bordure visible */
+#scheduleTable {
+    position: relative;
+    overflow: auto;
+    max-height: 80vh;
+    padding: 10px;
+    background-color: #f9f9f9; /* Douce mise en avant du fond */
+}
+
+/* En-têtes du tableau collants */
+.table-schedule th {
+    position: sticky;
+    top: 0;
+    background-color: #f4f4f4;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+    z-index: 10;
+    padding: 10px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Colonnes du tableau standard */
+.table-schedule th,
+.table-schedule td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Ligne survolée */
+.table-schedule tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Fond du tableau */
+#scheduleTable table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+</style>
