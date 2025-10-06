@@ -1,0 +1,140 @@
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a//dev/null b/httpd.private/clinical_procedure/data.php
+index 0000000000000000000000000000000000000000..5b3d4db4f633cc0fc71cc43578cf2d8ae5d8d771 100644
+--- a//dev/null
++++ b/httpd.private/clinical_procedure/data.php
+@@ -0,0 +1,131 @@
++
++<?php
++return [
++    'meta' => [
++        'version' => '0.1.0',
++        'about' => "Pilote PWA pour consultation rapide des procédures et fiches SMUR. Contenu fictif destiné à la validation ergonomique."
++    ],
++    'hospitals' => [
++        ['id' => 'H1', 'label' => 'Hôpital Universitaire'],
++        ['id' => 'H2', 'label' => 'Centre Hospitalier Communautaire']
++    ],
++    'procedures' => [
++        [
++            'id' => 'p1',
++            'slug' => 'bradycardia',
++            'title' => 'Bradycardie',
++            'type' => 'general',
++            'system' => 'Cardiaque',
++            'category' => 'ACLS',
++            'tags' => ['arythmie', 'ECG', 'urgence'],
++            'summary' => "Évaluation initiale et stabilisation d'une bradycardie symptomatique adulte.",
++            'createdAt' => '2025-03-02',
++            'updatedAt' => '2025-09-10',
++            'version' => '0.1-demo',
++            'body' => <<<'HTML'
++<p><strong>Évaluation initiale :</strong> vérifier la conscience, voie aérienne, respiration, circulation. Monitorer ECG, saturométrie et pression artérielle.</p>
++<p>Si la bradycardie est symptomatique, appliquer le protocole local. Rechercher des causes réversibles telles que l'<span class="inline-link" data-link="hypokalaemia">hypokaliémie</span>, l'hypoxie ou l'hypothermie.</p>
++<p class="muted">Dosages et posologies affichés à titre indicatif uniquement pour le prototype.</p>
++HTML,
++            'variants' => [
++                'H1' => [
++                    'note' => 'Variante H1 : blocs de stimulation et pharmacologie détaillés (prototype).',
++                    'blocks' => [
++                        [
++                            'html' => '<p><em>H1 :</em> privilégier la stimulation externe si la perfusion est altérée malgré l\'atropine (contenu fictif).</p>'
++                        ]
++                    ]
++                ],
++                'H2' => [
++                    'note' => 'Variante H2 : approche simplifiée du traitement initial (prototype).',
++                    'blocks' => [
++                        [
++                            'html' => '<p><em>H2 :</em> utiliser la checklist « rythme lent » avant transfert médicalisé (contenu fictif).</p>'
++                        ]
++                    ]
++                ]
++            ]
++        ],
++        [
++            'id' => 'p2',
++            'slug' => 'hypokalaemia',
++            'title' => 'Hypokaliémie',
++            'type' => 'general',
++            'system' => 'Métabolique',
++            'category' => 'Électrolytes',
++            'tags' => ['potassium', 'électrolyte'],
++            'summary' => "Évaluation et conduite à tenir devant un potassium bas.",
++            'createdAt' => '2025-04-11',
++            'updatedAt' => '2025-08-05',
++            'version' => '0.1-demo',
++            'body' => <<<'HTML'
++<p><strong>Vue d'ensemble :</strong> confirmer l'hypokaliémie, préciser le contexte (pertes digestives, médicaments, alcalose...).</p>
++<p>Évaluer la sévérité (ECG, signes musculaires) et corriger le magnésium si nécessaire. Cette fiche est fournie pour la maquette.</p>
++HTML,
++            'variants' => [
++                'H1' => [
++                    'note' => 'H1 : seuils de surveillance télémétrique spécifiques (prototype).',
++                    'blocks' => []
++                ],
++                'H2' => [
++                    'note' => 'H2 : critères IV versus per os ajustés (prototype).',
++                    'blocks' => []
++                ]
++            ]
++        ],
++        [
++            'id' => 'p3',
++            'slug' => 'anaphylaxis-smur',
++            'title' => 'Anaphylaxie (SMUR)',
++            'type' => 'smur',
++            'system' => 'Respiratoire',
++            'category' => 'Allergie',
++            'tags' => ['pré-hospitalier', 'voie aérienne'],
++            'summary' => "Reconnaissance et actions immédiates en situation pré-hospitalière (prototype).",
++            'createdAt' => '2025-02-01',
++            'updatedAt' => '2025-09-14',
++            'version' => '0.1-demo',
++            'body' => <<<'HTML'
++<p><strong>Reconnaissance :</strong> apparition rapide de symptômes cutanés, respiratoires et hémodynamiques après exposition à un allergène.</p>
++<p><strong>Actions immédiates :</strong> administration d'adrénaline intramusculaire selon le protocole local, oxygénothérapie et préparation du transport médicalisé.</p>
++HTML,
++            'variants' => [
++                'H1' => [
++                    'note' => 'H1 : disposition du kit terrain (prototype).',
++                    'blocks' => []
++                ],
++                'H2' => [
++                    'note' => 'H2 : checklist ambulance (prototype).',
++                    'blocks' => []
++                ]
++            ]
++        ],
++        [
++            'id' => 'p4',
++            'slug' => 'airway-basic',
++            'title' => 'Voie aérienne — gestes de base (SMUR)',
++            'type' => 'smur',
++            'system' => 'Respiratoire',
++            'category' => 'Voies aériennes',
++            'tags' => ['ventilation', 'masque-ballon'],
++            'summary' => 'Manœuvres d\'ouverture et ventilation au masque (prototype).',
++            'createdAt' => '2025-01-05',
++            'updatedAt' => '2025-07-22',
++            'version' => '0.1-demo',
++            'body' => <<<'HTML'
++<p><strong>Positionnement :</strong> bascule prudente de la tête, subluxation mandibulaire si suspicion de trauma cervical.</p>
++<p>Ventilation masque-ballon avec deux opérateurs lorsque possible. Contenu fictif pour test design.</p>
++HTML,
++            'variants' => [
++                'H1' => [
++                    'note' => 'H1 : choix des canules et des aides (prototype).',
++                    'blocks' => []
++                ],
++                'H2' => [
++                    'note' => 'H2 : matériel simplifié disponible dans le véhicule (prototype).',
++                    'blocks' => []
++                ]
++            ]
++        ]
++    ]
++];
+ 
+EOF
+)

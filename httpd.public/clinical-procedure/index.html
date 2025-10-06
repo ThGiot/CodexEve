@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+
+    <!-- ✅ Optimisation mobile et PWA -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- ✅ Titre et description -->
+    <title>Clinical Procedures &amp; SMUR</title>
+    <meta name="description" content="Application clinique prototype — consultation rapide des procédures et fiches SMUR.">
+
+    <!-- ✅ Liens et icônes -->
+    <link rel="manifest" href="./manifest.webmanifest">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+    <link rel="apple-touch-icon" href="./icons/icon-512.png">
+</head>
+
+<body>
+<div class="app" id="app" aria-live="polite">
+    <!-- ✅ Indicateur de synchronisation -->
+    <div class="sync-indicator" id="syncIndicator" role="status" aria-live="polite" aria-atomic="true">
+        <span aria-hidden="true">⟳</span>
+        <span id="syncText">Hors ligne</span>
+    </div>
+
+    <!-- ✅ Barre supérieure -->
+    <div class="statusbar" aria-hidden="true"></div>
+    <div class="topbar">
+        <button class="iconbtn" id="btnMenu" title="Menu" aria-label="Ouvrir le menu">☰</button>
+        <div class="title" id="headerTitle">ED Procedures</div>
+        <div class="spacer"></div>
+        <button class="iconbtn" id="btnSearch" title="Rechercher" aria-label="Rechercher">🔎</button>
+        <button class="iconbtn" id="btnFav" title="Favoris" aria-label="Favoris">⭐</button>
+    </div>
+
+    <!-- ✅ Navigation latérale -->
+    <nav class="drawer" id="drawer" aria-label="Navigation principale">
+        <h3>Navigation</h3>
+        <a href="#" data-nav="home">🏠 Accueil</a>
+        <a href="#" data-nav="procedures">📚 Procédures</a>
+        <a href="#" data-nav="smur">🚑 SMUR</a>
+        <a href="#" data-nav="favorites">⭐ Favoris</a>
+        <h3>Par système</h3>
+        <div id="drawerSystems"></div>
+        <h3>Réglages</h3>
+        <a href="#" data-nav="settings">⚙️ Préférences</a>
+        <div class="kicker" style="margin:16px">Prototype clinique • Contenu fictif</div>
+    </nav>
+    <div class="overlay" id="overlay" role="presentation"></div>
+
+    <!-- ✅ Contenu principal -->
+    <main>
+        <!-- Connexion -->
+        <section class="screen active" id="screen-login" role="region" aria-label="Connexion">
+            <div class="loginhero">
+                <div class="avatar" style="margin:0 auto 10px">ED</div>
+                <h1>Clinical Procedures &amp; SMUR</h1>
+                <p>Prototype — connexion requise</p>
+            </div>
+
+            <div class="card">
+                <div class="label">Email</div>
+                <div class="searchbar">
+                    <input type="email" id="email" placeholder="nom@hopital.org" aria-label="Email" autocomplete="username">
+                </div>
+                <div class="label">Mot de passe</div>
+                <div class="searchbar">
+                    <input type="password" id="password" placeholder="••••••••" aria-label="Mot de passe" autocomplete="current-password">
+                </div>
+
+                <div class="row" style="margin-top:12px; justify-content:space-between">
+                    <button class="btn" id="btnDemoFill">Démo</button>
+                    <button class="btn primary" id="btnLogin">Se connecter</button>
+                </div>
+            </div>
+            <div class="muted" style="margin:10px 4px">En continuant, vous acceptez les conditions du pilote. Aucun contenu médical réel.</div>
+        </section>
+
+        <!-- Accueil -->
+        <section class="screen" id="screen-home" role="region" aria-label="Accueil">
+            <div class="card">
+                <div class="searchbar">
+                    <span aria-hidden="true">🔎</span>
+                    <input id="inputSearch" type="text" placeholder="Rechercher une procédure" aria-label="Recherche">
+                </div>
+                <div class="quick" role="navigation" aria-label="Accès rapide">
+                    <div class="tile" data-nav="procedures">📚 Procédures</div>
+                    <div class="tile" data-nav="smur">🚑 SMUR</div>
+                    <div class="tile" data-nav="favorites">⭐ Favoris</div>
+                </div>
+            </div>
+
+            <div class="section-title">Dernières mises à jour</div>
+            <div id="feed" aria-live="polite"></div>
+        </section>
+
+        <!-- Liste des procédures -->
+        <section class="screen" id="screen-procedures" role="region" aria-label="Liste des procédures">
+            <div class="row" style="margin-bottom:8px" role="tablist" aria-label="Filtre type">
+                <div class="pill active" id="pillAll" role="tab" aria-selected="true">Toutes</div>
+                <div class="pill" data-type="general" role="tab" aria-selected="false">Général</div>
+                <div class="pill" data-type="smur" role="tab" aria-selected="false">SMUR</div>
+            </div>
+            <div class="list" id="procList"></div>
+        </section>
+
+        <!-- Détail -->
+        <section class="screen" id="screen-detail" role="region" aria-label="Détail de la procédure">
+            <div class="card">
+                <div class="row" style="justify-content:space-between">
+                    <div>
+                        <div class="kicker" id="detailType"></div>
+                        <h2 id="detailTitle" style="margin:4px 0 6px"></h2>
+                        <div class="subtitle" id="detailSystem"></div>
+                    </div>
+                    <button class="heart" id="btnHeart" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">♡</button>
+                </div>
+                <div class="tags" id="detailTags"></div>
+                <div class="imgph" aria-hidden="true">Visuel à ajouter</div>
+                <div id="detailContent" style="margin-top:10px; line-height:1.55"></div>
+                <div class="footer-meta" id="detailMeta"></div>
+            </div>
+        </section>
+
+        <!-- Section SMUR -->
+        <section class="screen" id="screen-smur" role="region" aria-label="SMUR">
+            <div class="grid" id="smurGrid"></div>
+        </section>
+
+        <!-- Favoris -->
+        <section class="screen" id="screen-favorites" role="region" aria-label="Favoris">
+            <div class="list" id="favList"></div>
+        </section>
+
+        <!-- Réglages -->
+        <section class="screen" id="screen-settings" role="region" aria-label="Réglages">
+            <div class="card">
+                <div class="label">Choisir l'hôpital</div>
+                <div class="searchbar">
+                    <select id="selHospital" aria-label="Sélection de l'hôpital"></select>
+                </div>
+                <div class="row" style="margin-top:10px; gap:8px">
+                    <button class="btn" id="btnDownload">Télécharger pour hors ligne</button>
+                    <button class="btn" id="btnClear">Vider le cache</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="label">À propos</div>
+                <div class="muted" id="aboutText"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ✅ Toast de notification -->
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+</div>
+
+<!-- ✅ Script principal -->
+<script type="module" src="./app.js"></script>
+</body>
+</html>

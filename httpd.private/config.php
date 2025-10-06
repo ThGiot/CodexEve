@@ -1,7 +1,7 @@
 <?php
 
 
-define('LOCAL', false);
+define('LOCAL', true);
 setlocale(LC_TIME, 'fr_FR.UTF-8', 'fr_FR', 'fra', 'french');
 
 // Config SMTP
