@@ -1,4 +1,6 @@
 <?php
+namespace App\Core;
+use PDO;
 class RoleManager {
     private $dbh;
 

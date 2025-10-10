@@ -2,13 +2,13 @@
 declare(strict_types=1);
 
 // Chargement des styles et des dépendances
+require_once PRIVATE_PATH . '/vendor/autoload.php';
 require_once dirname(__DIR__, 1) . '/styles/la_grille.html';
 require_once dirname(__DIR__, 3) . '/classes/Modal.php';
-require_once dirname(__DIR__, 1) . '/classes/FilterService.php';
-require_once dirname(__DIR__, 1) . '/classes/SchedulePage.php';
 require_once dirname(__DIR__, 3) . '/classes/Form.php';
-require_once dirname(__DIR__, 1) . '/classes/PosteService.php';
-
+use Grid\PosteService;
+use Grid\FilterService;
+use Grid\SchedulePage;
 
 
 $clientId = (int) $_SESSION['client_actif'];

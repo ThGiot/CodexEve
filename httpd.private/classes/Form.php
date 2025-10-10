@@ -115,7 +115,11 @@ class Form {
     private function renderField($field) {
         $output = '<div class="mb-3">';
         $output .= '<label class="form-label" for="' . $field['id'] . '">' . $field['label'] . '</label>';
-    
+        
+         if ($field['type'] === 'html') {
+        // On insère directement le HTML sans wrapper <div> ni label
+        return $field['content'];
+        }
         if ($field['type'] === 'select') {
             $output .= $this->generateSelectField($field);
         } elseif ($field['type'] === 'searchable-select') {

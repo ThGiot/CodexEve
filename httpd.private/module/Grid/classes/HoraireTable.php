@@ -1,8 +1,13 @@
 <?php
+namespace Grid;
+
 require_once PRIVATE_PATH . '/classes/Table.php';
+use \Table; 
+
+use PDO;
 
 class HoraireTable {
-    private Table $table;
+    private Table $table; 
 
     public function __construct(array $horaires) {
         $this->table = new Table(
@@ -17,7 +22,6 @@ class HoraireTable {
                 [
                     "Horaire" => $horaire['nom'],
                     "Personnes" => $horaire['personne_nb'] ?? 'N/A',
-                    
                 ],
                 [
                     ["name" => "Edit", "link" => "getContent(301, {horaire_id: '".$horaire['id']."'})", "class" => ""],
@@ -31,4 +35,5 @@ class HoraireTable {
         return $this->table->render();
     }
 }
+
 ?>

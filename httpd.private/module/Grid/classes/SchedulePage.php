@@ -1,8 +1,6 @@
 <?php
 
-/**
- * Classe responsable du rendu de la page de planification.
- */
+namespace Grid;
 class SchedulePage
 {
     private FilterService $filterService;
@@ -91,6 +89,10 @@ class SchedulePage
                 <input type="checkbox" id="ignoreEarlyHours" class="form-check-input" checked onchange="filterTable()" />
                 <label for="ignoreEarlyHours" class="form-check-label">Ignorer les heures entre 03h00 et 08h00</label>
             </div>
+            <div class="text-end my-3">
+  <button class="btn btn-success" onclick="node('exportGridToExcel', {})">Exporter en Excel</button>
+</div>
+
 
             <!-- Tableau de planning -->
             <section id="scheduleTable" class="table-responsive"></section>

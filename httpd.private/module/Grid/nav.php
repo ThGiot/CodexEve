@@ -17,7 +17,7 @@ switch($role){
   case 2:
     $navData = [
       [
-          'label' => 'Grid',
+          'label' => 'La Grille',
           'pages' => [
               [
                   'name' => 'La Grille',
@@ -43,17 +43,39 @@ switch($role){
                 'name' => 'Gestions des Zones',
                 'icon' => 'fas fa-map-marked-alt',
                 'link' => '40'
-              ]
-              ,
+              ],
               [
-                'name' => 'Gestions des Assosiation',
-                'icon' => 'fas fa-th-list',
-                'link' => '50'
+                'name' => 'Matériel',
+                'icon' => 'fas fa-map-marked-alt',
+                'link' => '80'
               ]
+              
+            
           ]
-      ]
+              ],
+              [
+                'label' => 'Gestion RH',
+                'pages' => [
+                  [
+                    'name' => 'Gestions des Assosiation',
+                    'icon' => 'fas fa-th-list',
+                    'link' => '50'
+                  ],
+                    [
+                      'name' => 'Besoins RH',
+                      'icon' => 'fas fa-user-plus',
+                      'link' => '60'
+                    ],
+                    [
+                      'name' => 'Catering',
+                      'icon' => 'fas fa-user-plus',
+                      'link' => '70'
+                    ]
+                 
+                ]
+            ]
       
-      // Ajouter plus d'éléments ici...
+
     ];
   break;
   case 3:
@@ -70,7 +92,6 @@ switch($role){
             ]
         ]
         
-        // Ajouter plus d'éléments ici...
       ];
     break;
 }

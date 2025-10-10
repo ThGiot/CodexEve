@@ -31,6 +31,10 @@ $allowedActions = [
     'horaire_add' => 'horaire_add.php',
     'assos_dell' => 'assos_dell.php',
     'association_maj_save' => 'association_maj_save.php',
+    'association_dispo_save' => 'association_dispo_save.php',
+    'material_add' => 'material_add.php',
+    'material_dell' => 'material_dell.php',
+    
 ];
 
 $action = $data['action'];

@@ -18,9 +18,12 @@ return array(
     'Psr\\Http\\Client\\' => array($vendorDir . '/psr/http-client/src'),
     'PhpOffice\\PhpSpreadsheet\\' => array($vendorDir . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet'),
     'MyCLabs\\Enum\\' => array($vendorDir . '/myclabs/php-enum/src'),
+    'Module\\' => array($baseDir . '/httpd.private/module'),
     'Matrix\\' => array($vendorDir . '/markbaker/matrix/classes/src'),
+    'Grid\\' => array($baseDir . '/httpd.private/module/Grid/classes'),
     'Egulias\\EmailValidator\\' => array($vendorDir . '/egulias/email-validator/src'),
     'Doctrine\\Deprecations\\' => array($vendorDir . '/doctrine/deprecations/lib/Doctrine/Deprecations'),
     'Doctrine\\Common\\Lexer\\' => array($vendorDir . '/doctrine/lexer/src'),
     'Complex\\' => array($vendorDir . '/markbaker/complex/classes/src'),
+    'App\\' => array($baseDir . '/httpd.private/classes'),
 );

@@ -1,9 +1,10 @@
 <?php
+require_once PRIVATE_PATH . '/vendor/autoload.php';
 require_once PRIVATE_PATH . '/classes/Table.php'; 
 require_once PRIVATE_PATH . '/classes/PageLayout.php'; 
 require_once PRIVATE_PATH . '/classes/createModalContent.php'; 
-require_once PRIVATE_PATH . '/classes/Modal.php'; 
-require_once dirname(__DIR__, 1) . '/classes/PosteService.php';
+require_once PRIVATE_PATH . '/classes/Modal.php';
+use Grid\PosteService;
 
 $posteService = new PosteService($dbh);
 

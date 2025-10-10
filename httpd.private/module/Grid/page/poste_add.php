@@ -4,9 +4,9 @@ require_once dirname(__DIR__, 1) . '/styles/la_grille.html';
 require_once dirname(__DIR__, 3) . '/classes/Modal.php';
 require_once dirname(__DIR__, 1) . '/classes/FilterService.php';
 require_once dirname(__DIR__, 3) . '/classes/PageLayout.php';
-require_once dirname(__DIR__, 1) . '/classes/PosteService.php';
-require_once dirname(__DIR__, 1) . '/classes/PosteForm.php';
-
+require_once PRIVATE_PATH . '/vendor/autoload.php';
+use Grid\PosteService;
+use Grid\PosteForm;
 // Instanciation de PosteService
 $posteService = new PosteService($dbh);
 

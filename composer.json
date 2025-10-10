@@ -1,15 +1,18 @@
 {
-    "require": {
-        "phpoffice/phpspreadsheet": "^1.29",
-        "twilio/sdk": "^7.11",
-        "setasign/fpdf": "^1.8",
-        "swiftmailer/swiftmailer": "^6.3"
-    },
-
-    "config": {
-        "vendor-dir": "httpd.private/vendor"
+  "require": {
+    "phpoffice/phpspreadsheet": "^1.29",
+    "twilio/sdk": "^7.11",
+    "setasign/fpdf": "^1.8",
+    "swiftmailer/swiftmailer": "^6.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "httpd.private/classes/",
+      "Module\\": "httpd.private/module/",
+      "Grid\\": "httpd.private/module/Grid/classes/"
     }
-
-
-    
+  },
+  "config": {
+    "vendor-dir": "httpd.private/vendor"
+  }
 }

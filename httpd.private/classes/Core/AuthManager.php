@@ -1,4 +1,5 @@
 <?php
+namespace App\Core;
 class AuthManager {
     public static function checkAuth() {
         if (!isset($_SESSION['user'])) {

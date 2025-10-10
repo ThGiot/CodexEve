@@ -43,7 +43,12 @@ class ComposerStaticInit5787a6b01808558dcf101aec2e20ed1e
         'M' => 
         array (
             'MyCLabs\\Enum\\' => 13,
+            'Module\\' => 7,
             'Matrix\\' => 7,
+        ),
+        'G' => 
+        array (
+            'Grid\\' => 5,
         ),
         'E' => 
         array (
@@ -57,6 +62,10 @@ class ComposerStaticInit5787a6b01808558dcf101aec2e20ed1e
         'C' => 
         array (
             'Complex\\' => 8,
+        ),
+        'A' => 
+        array (
+            'App\\' => 4,
         ),
     );
 
@@ -110,9 +119,17 @@ class ComposerStaticInit5787a6b01808558dcf101aec2e20ed1e
         array (
             0 => __DIR__ . '/..' . '/myclabs/php-enum/src',
         ),
+        'Module\\' => 
+        array (
+            0 => __DIR__ . '/../../..' . '/httpd.private/module',
+        ),
         'Matrix\\' => 
         array (
             0 => __DIR__ . '/..' . '/markbaker/matrix/classes/src',
+        ),
+        'Grid\\' => 
+        array (
+            0 => __DIR__ . '/../../..' . '/httpd.private/module/Grid/classes',
         ),
         'Egulias\\EmailValidator\\' => 
         array (
@@ -129,6 +146,10 @@ class ComposerStaticInit5787a6b01808558dcf101aec2e20ed1e
         'Complex\\' => 
         array (
             0 => __DIR__ . '/..' . '/markbaker/complex/classes/src',
+        ),
+        'App\\' => 
+        array (
+            0 => __DIR__ . '/../../..' . '/httpd.private/classes',
         ),
     );
 

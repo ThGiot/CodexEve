@@ -4,9 +4,9 @@ require_once PRIVATE_PATH . '/classes/PageLayout.php';
 require_once PRIVATE_PATH . '/classes/createModalContent.php'; 
 require_once PRIVATE_PATH . '/classes/Modal.php'; 
 require_once PRIVATE_PATH . '/classes/Form.php'; 
-require_once dirname(__DIR__, 1) . '/classes/HoraireService.php';
-require_once dirname(__DIR__, 1) . '/classes/HoraireTable.php';
 
+use Grid\HoraireTable;
+use Grid\HoraireService;
 // Création du modal de suppression
 $modal = new Modal(
     id: "horaireDell", 

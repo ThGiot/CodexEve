@@ -1,6 +1,9 @@
 <?php
-require_once PRIVATE_PATH . '/classes/Form.php';
-require_once 'PosteService.php';
+namespace Grid;
+require_once __DIR__ . '/../../../classes/Form.php';
+
+
+
 
 class PosteForm {
     private Form $form;
@@ -43,7 +46,7 @@ class PosteForm {
         bool $isUpdate
     ): void {
         // Gestion du champ "Poste N°"
-            $numeroPoste = $poste['numero'];
+            $numeroPoste = $poste['numero'] ?? null;
 
         $this->form->addField(
             type: 'text', // Mettre "text" pour éviter les erreurs sur un champ non numérique

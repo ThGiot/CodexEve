@@ -1,5 +1,7 @@
 <?php
 declare(strict_types=1);
+namespace Grid;
+use PDO;
 
 class HoraireService {
     private PDO $dbh;
@@ -122,9 +124,51 @@ class HoraireService {
         return $stmt->execute();
     }
 
-    /**
-     * 📌 Supprime une période d'un horaire.
-     */
+    public function getPostesParHoraire(int $clientId,PDO $dbh): array {
+        $sql = "
+            SELECT horaire_id, COUNT(*) as nb_postes
+            FROM grid_poste
+            WHERE client_id = :client_id
+            GROUP BY horaire_id
+        ";
+
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->bindParam(':client_id', $clientId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $rows;
+    }
+    public static function getNombreParPeriode(int $clientId,int $horaire_id,$heureDebut,$heureFin, PDO $dbh){
+        $sql = "
+        SELECT COUNT(DISTINCT nom) AS nb_present
+        FROM grid_horaire_periode
+        WHERE horaire_id = :horaire_id
+        AND date_debut <= :heure_fin
+        AND date_fin >= :heure_debut
+
+    ";
+
+    $stmt =$dbh->prepare($sql);
+    $stmt->bindParam(':heure_debut', $heureDebut);
+    $stmt->bindParam(':heure_fin', $heureFin);
+    $stmt->bindParam(':horaire_id', $horaire_id);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['nb_present']?? null;
+
+    }
+    public static function getNom(int $clientId,int $id, PDO $dbh): ?string {
+        $query = "SELECT nom FROM grid_horaire WHERE id = :id AND client_id = :client_id";
+        $stmt = $dbh->prepare($query);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':client_id', $clientId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['nom'] : null;
+    }
+    
     public function supprimerHoraire(int $horaireId): bool {
         try {
             // Démarrer une transaction

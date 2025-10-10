@@ -3,7 +3,8 @@ require_once dirname(__DIR__, 3) . '/classes/RequestHandler.php';
 require_once dirname(__DIR__, 3) . '/classes/ResponseHandler.php';
 require_once dirname(__DIR__, 3) . '/classes/DBHandler.php';
 require_once dirname(__DIR__, 3) . '/sql.php';
-require_once dirname(__DIR__, 1) . '/classes/HoraireService.php';
+
+use Grid\HoraireService;
 
 $responseHandler = new ResponseHandler();
 $requestHandler = new RequestHandler();

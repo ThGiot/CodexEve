@@ -4,7 +4,12 @@ require_once PRIVATE_PATH . '/classes/PageLayout.php';
 require_once PRIVATE_PATH . '/classes/createModalContent.php'; 
 require_once PRIVATE_PATH . '/classes/Modal.php'; 
 require_once PRIVATE_PATH . '/classes/Form.php'; 
-require_once dirname(__DIR__, 1) . '/classes/PosteService.php';
+require_once dirname(__DIR__, 3) . '/classes/RequestHandler.php';
+
+use Grid\PosteService;
+use Grid\HoraireService;
+
+
 
 $posteService = new PosteService($dbh);
 
@@ -44,6 +49,7 @@ try {
             ],
             [
                 ["name" => "Edit", "link" => "getContent(501, {association_id : '".$association['id']."'})", "class" => ""],
+                ["name" => "Devis", "link" => "getContent(502, {association_id : '".$association['id']."'})", "class" => ""],
                 ["name" => "Remove", "link" => "node('grid_association_dell', {associationId : '".$association['id']."'})", "class" => "danger"],
             ],
             [

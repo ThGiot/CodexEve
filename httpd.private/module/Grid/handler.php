@@ -66,6 +66,25 @@ switch($permissions){
         include __DIR__ . '/page/association_manage.php';
     break;
 
+    case array(1,60) : 
+    case array(2,60) : 
+        include __DIR__ . '/page/rh_besoin.php';
+    break;
+
+    case array(1,502) : 
+    case array(2,502) : 
+        include __DIR__ . '/page/rh_devis.php';
+    break;
+    case array(1,70) : 
+    case array(2,70) : 
+        include __DIR__ . '/page/catering.php';
+    break;
+    case array(1,80) : 
+    case array(2,80) : 
+        include __DIR__ . '/page/materiel_liste.php';
+    break;
+
+
 
     
 }

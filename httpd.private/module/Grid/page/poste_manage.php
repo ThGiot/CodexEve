@@ -1,9 +1,9 @@
 <?php
 require_once PRIVATE_PATH . '/classes/PageLayout.php'; 
 require_once PRIVATE_PATH . '/classes/RequestHandler.php';
-require_once dirname(__DIR__, 1) . '/classes/PosteService.php';
-require_once dirname(__DIR__, 1) . '/classes/PosteForm.php';
-
+require_once PRIVATE_PATH . '/vendor/autoload.php';
+use Grid\PosteService;
+use Grid\PosteForm;
 
 $requestHandler = new RequestHandler();
 $posteService = new PosteService($dbh);

@@ -75,7 +75,14 @@ VALUES
     ('pré-hospitalier'), ('voie aérienne'), ('ventilation'), ('masque-ballon');
 
 INSERT INTO clinical_procedure (slug, title, type, system, category, summary, body, version, created_at, updated_at) VALUES
-                                                                                                                         ('bradycardia', 'Bradycardie', 'general', 'Cardiaque', 'ACLS',
+
+
+ALTER TABLE clinical_user_hospital
+    ADD CONSTRAINT fk_clinical_user_hospital_user
+        FOREIGN KEY (user_id)
+            REFERENCES users(id)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE;                                                                                                                  ('bradycardia', 'Bradycardie', 'general', 'Cardiaque', 'ACLS',
                                                                                                                           "Évaluation initiale et stabilisation d'une bradycardie symptomatique adulte.",
                                                                                                                           '<p><strong>Évaluation initiale :</strong> vérifier la conscience, voie aérienne, respiration, circulation. Monitorer ECG, saturométrie et pression artérielle.</p>
                                                                                                                          <p>Si la bradycardie est symptomatique, appliquer le protocole local. Rechercher des causes réversibles telles que l\'<span class="inline-link" data-link="hypokalaemia">hypokaliémie</span>, l\'hypoxie ou l\'hypothermie.</p>

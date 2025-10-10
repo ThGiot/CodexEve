@@ -8,6 +8,8 @@ class SelectHandler {
         'grid_horaire',
         'grid_poste',
         'grid_poste_type',
+        'grid_zone',
+        'grid_horaire_periode',
     ];
 
     private int $forcedClientId = 6;

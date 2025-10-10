@@ -1,4 +1,5 @@
 <?php
+namespace App\Core;
 class PermissionManager {
     private $role;
     private $page;
