@@ -7,7 +7,7 @@ return [
                 'name' => 'Liste des hopitaux',
                 'icon' => 'fas fa-list',
                 'link' => '1',
-                'view' => 'hospital.php',
+                'view' => 'manager.php',
                 'roles' => [1, 2],
             ],
             [

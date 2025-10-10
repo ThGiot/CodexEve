@@ -32,7 +32,7 @@ class HandlerController extends Controller
         $viewPath = PRIVATE_PATH . "/module/{$module}/View/{$viewFile}";
         if (!file_exists($viewPath)) {
             http_response_code(404);
-            echo "Vue introuvable : {$viewFile}";
+            echo "Vue introuvable : {$viewFile} IN {$module}";
             return;
         }
 

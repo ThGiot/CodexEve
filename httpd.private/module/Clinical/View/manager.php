@@ -13,7 +13,7 @@ require_once PRIVATE_PATH . '/classes/BootstrapCard.php';
 $layout = new PageLayout();
 
 $introCard = new BootstrapCard('clinical-manager-hero', 'shadow-none border border-300 mb-4');
-$introCard->setHeader('<div class="d-flex align-items-center gap-3"><span class="fs-2">🩺</span><div><h4 class="mb-1">Gestion des fiches cliniques</h4><p class="mb-0 text-700">Centralisez la création, la publication et l\'archivage des procédures en un seul endroit.</p></div></div>');
+$introCard->setHeader('<div class="d-flex align-items-center gap-3"><span class="fs-2">🩺</span><div><h4 class="mb-1">Gestion des fiches cliniques</h4></div></div>');
 $introCard->setFooter('<div class="d-flex flex-wrap gap-2"><button class="btn btn-sm btn-primary" onclick="node(\'clinicalNew\', {})">Nouvelle fiche</button><button class="btn btn-sm btn-outline-secondary" onclick="node(\'clinicalSync\', {})">Synchroniser le contenu</button><button class="btn btn-sm btn-outline-warning" onclick="node(\'clinicalAudit\', {})">Voir l\'audit</button></div>');
 $layout->addElement($introCard->render(), 12, 'intro');
 
