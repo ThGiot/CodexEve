@@ -14,7 +14,7 @@ $layout = new PageLayout();
 
 $introCard = new BootstrapCard('clinical-manager-hero', 'shadow-none border border-300 mb-4');
 $introCard->setHeader('<div class="d-flex align-items-center gap-3"><span class="fs-2">🩺</span><div><h4 class="mb-1">Gestion des fiches cliniques</h4></div></div>');
-$introCard->setFooter('<div class="d-flex flex-wrap gap-2"><button class="btn btn-sm btn-primary" onclick="node(\'clinicalNew\', {})">Nouvelle fiche</button><button class="btn btn-sm btn-outline-secondary" onclick="node(\'clinicalSync\', {})">Synchroniser le contenu</button><button class="btn btn-sm btn-outline-warning" onclick="node(\'clinicalAudit\', {})">Voir l\'audit</button></div>');
+$introCard->setFooter('<div class="d-flex flex-wrap gap-2"><button class="btn btn-sm btn-primary" onclick="node(\'Clinical_new\', {})">Nouvelle fiche</button><button class="btn btn-sm btn-outline-secondary" onclick="node(\'Clinical_sync\', {})">Synchroniser le contenu</button><button class="btn btn-sm btn-outline-warning" onclick="node(\'Clinical_audit\', {})">Voir l\'audit</button></div>');
 $layout->addElement($introCard->render(), 12, 'intro');
 
 //----------------------------------------------------------------
@@ -66,17 +66,17 @@ foreach ($fiches as $index => $fiche) {
         [
             [
                 'name'  => 'Modifier',
-                'link'  => "node('clinicalEdit', {id: $index})",
+                'link'  => "node('Clinical_edit', {id: $index})",
                 'class' => 'btn-primary'
             ],
             [
                 'name'  => 'Prévisualiser',
-                'link'  => "node('clinicalPreview', {id: $index})",
+                'link'  => "node('Clinical_preview', {id: $index})",
                 'class' => 'btn-outline-secondary'
             ],
             [
                 'name'  => 'Archiver',
-                'link'  => "node('clinicalArchive', {id: $index})",
+                'link'  => "node('Clinical_archive', {id: $index})",
                 'class' => 'btn-outline-danger'
             ]
         ]
@@ -92,13 +92,13 @@ $filtersCard = '<div class="card shadow-none border border-300 mb-3">'
                 </div>
                 <div class="ms-auto d-flex flex-wrap gap-2">
                     <div class="btn-group" role="group" aria-label="Filtre statut">
-                        <button type="button" class="btn btn-sm btn-outline-secondary active" onclick="node(\'clinicalFilter\', {statut: \"all\"})">Tous</button>
-                        <button type="button" class="btn btn-sm btn-outline-success" onclick="node(\'clinicalFilter\', {statut: \"published\"})">Publié</button>
-                        <button type="button" class="btn btn-sm btn-outline-warning" onclick="node(\'clinicalFilter\', {statut: \"draft\"})">Brouillon</button>
-                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="node(\'clinicalFilter\', {statut: \"review\"})">À relire</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary active" onclick="node(\'Clinical_filter\', {statut: \"all\"})">Tous</button>
+                        <button type="button" class="btn btn-sm btn-outline-success" onclick="node(\'Clinical_filter\', {statut: \"published\"})">Publié</button>
+                        <button type="button" class="btn btn-sm btn-outline-warning" onclick="node(\'Clinical_filter\', {statut: \"draft\"})">Brouillon</button>
+                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="node(\'Clinical_filter\', {statut: \"review\"})">À relire</button>
                     </div>
-                    <button class="btn btn-sm btn-outline-primary" onclick="node(\'clinicalFilter\', {tag: \"SMUR\"})">Tag SMUR</button>
-                    <button class="btn btn-sm btn-outline-primary" onclick="node(\'clinicalFilter\', {tag: \"Pédiatrie\"})">Tag Pédiatrie</button>
+                    <button class="btn btn-sm btn-outline-primary" onclick="node(\'Clinical_filterr\', {tag: \"SMUR\"})">Tag SMUR</button>
+                    <button class="btn btn-sm btn-outline-primary" onclick="node(\'Clinical_filter\', {tag: \"Pédiatrie\"})">Tag Pédiatrie</button>
                 </div>
             </div>
         </div>'
@@ -106,7 +106,7 @@ $filtersCard = '<div class="card shadow-none border border-300 mb-3">'
             <div class="row g-3 align-items-center">
                 <div class="col-sm-6 col-lg-4">
                     <label class="form-label mb-1" for="filterSystem">Système</label>
-                    <select class="form-select form-select-sm" id="filterSystem" onchange="node(\'clinicalFilter\', {system: this.value})">
+                    <select class="form-select form-select-sm" id="filterSystem" onchange="node(\'Clinical_filter\', {system: this.value})">
                         <option value="">Tous les systèmes</option>
                         <option value="airway">Voies aériennes</option>
                         <option value="urgence">Urgence</option>
@@ -116,7 +116,7 @@ $filtersCard = '<div class="card shadow-none border border-300 mb-3">'
                 </div>
                 <div class="col-sm-6 col-lg-4">
                     <label class="form-label mb-1" for="filterAuthor">Auteur</label>
-                    <select class="form-select form-select-sm" id="filterAuthor" onchange="node(\'clinicalFilter\', {author: this.value})">
+                    <select class="form-select form-select-sm" id="filterAuthor" onchange="node(\'Clinical_filter\', {author: this.value})">
                         <option value="">Tous les auteurs</option>
                         <option value="martin">Dr L. Martin</option>
                         <option value="dubois">Infirmier.e C. Dubois</option>
@@ -128,8 +128,8 @@ $filtersCard = '<div class="card shadow-none border border-300 mb-3">'
                     <label class="form-label mb-1" for="filterSearch">Recherche</label>
                     <div class="input-group input-group-sm">
                         <span class="input-group-text bg-transparent"><span class="fas fa-search"></span></span>
-                        <input type="search" class="form-control" id="filterSearch" placeholder="Rechercher une fiche" oninput="node(\'clinicalFilter\', {search: this.value})">
-                        <button class="btn btn-outline-secondary" onclick="node(\'clinicalFilterReset\', {})">Réinitialiser</button>
+                        <input type="search" class="form-control" id="filterSearch" placeholder="Rechercher une fiche" oninput="node(\'Clinical_filter\', {search: this.value})">
+                        <button class="btn btn-outline-secondary" onclick="node(\'Clinical_filter_reset\', {})">Réinitialiser</button>
                     </div>
                 </div>
             </div>
@@ -149,7 +149,7 @@ $previewCard = '<div class="card shadow-none border border-300 mb-3">
                     <h5 class="mb-1">Prévisualisation</h5>
                     <p class="mb-0 text-700">Aperçu rapide de la fiche sélectionnée.</p>
                 </div>
-                <button class="btn btn-sm btn-outline-secondary" onclick="node(\'clinicalOpenPublic\', {id: 0})">Ouvrir dans le portail</button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="node(\'Clinical_open_public\', {id: 0})">Ouvrir dans le portail</button>
             </div>
         </div>
         <div class="card-body">
@@ -212,7 +212,7 @@ $layout->addElement($rightColumn, 5, 'overviewRow');
 //----------------------------------------------------------------
 // Formulaire d'édition détaillée
 //----------------------------------------------------------------
-$onSubmit = "event.preventDefault(); node('clinicalSave', {formId: 'clinical_editor_form'});";
+$onSubmit = "event.preventDefault(); node('Clinical_save', {formId: 'clinical_editor_form'});";
 $form = new Form('clinical_editor_form', 'clinical_editor_form', 'POST', $onSubmit, 'Éditer la fiche sélectionnée');
 $form->addField('text', 'sheetTitle', 'sheetTitle', 'Titre de la fiche', 'Intubation orotrachéale', 'Titre affiché dans la liste');
 $form->addField('text', 'sheetSlug', 'sheetSlug', 'Identifiant / slug', 'intubation-orotracheale', 'Utilisé pour l\'URL et les exports');
